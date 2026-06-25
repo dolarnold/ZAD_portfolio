@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Safety Watch Innovations Ltd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#6FC042;
+    --green-dark:#4E9A2B;
+    --navy:#1B2440;
+    --navy-soft:#2B3760;
+    --amber:#F2A93B;
+    --ink:#1F2430;
+    --muted:#6B6B7A;
+    --card:#F7F7FA;
+    --lavender:#EFEBF9;
+    --line:#E4E3EC;
+    --white:#FFFFFF;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* ===== Header ===== */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 56px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:16px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--white);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-mark{
+    width:40px;height:40px;
+    border-radius:10px;
+    background:linear-gradient(160deg, var(--navy) 55%, var(--green) 55%);
+    position:relative;
+    flex:none;
+  }
+  .brand-mark::after{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border:2px solid var(--white);
+    border-radius:5px;
+    opacity:.85;
+  }
+  .brand-text strong{
+    display:block;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:17px;
+    color:var(--green-dark);
+    line-height:1.1;
+  }
+  .brand-text span{
+    display:block;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  nav.main-nav{
+    display:flex;
+    gap:30px;
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+  }
+  nav.main-nav a:hover{color:var(--green-dark);}
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .search-pill{
+    display:flex;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:30px;
+    padding:6px 6px 6px 16px;
+    gap:10px;
+  }
+  .search-pill input{
+    border:none;
+    outline:none;
+    font-size:13px;
+    width:140px;
+    font-family:inherit;
+  }
+  .search-pill button{
+    width:32px;height:32px;
+    border-radius:50%;
+    background:var(--green);
+    border:none;
+    color:white;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+  }
+  .icon-circle{
+    width:36px;height:36px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(900px 360px at 85% 10%, rgba(111,192,66,0.10), transparent 60%),
+      linear-gradient(120deg, var(--lavender) 0%, #F5EDFA 60%, #F0EAF8 100%);
+    padding:64px 56px 80px;
+    overflow:hidden;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--green-dark);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--green);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:48px;
+    font-weight:700;
+    color:var(--navy);
+    max-width:680px;
+  }
+  .hero p.lede{
+    margin-top:18px;
+    max-width:560px;
+    color:var(--navy-soft);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .breadcrumb{
+    margin-top:26px;
+    font-size:13px;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .breadcrumb .dot{
+    width:6px;height:6px;background:var(--green);border-radius:50%;
+  }
+  .hero-stripe{
+    position:absolute;
+    right:-60px;
+    top:-40px;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:repeating-linear-gradient(45deg, var(--amber) 0 14px, var(--navy) 14px 28px);
+    opacity:.07;
+  }
+
+  /* ===== Category nav ===== */
+  .cat-nav{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:0 56px;
+    margin-top:-30px;
+    position:relative;
+    z-index:2;
+  }
+  .cat-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:10px 16px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:30px;
+    color:var(--navy-soft);
+    box-shadow:0 6px 18px -12px rgba(27,36,64,0.25);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .cat-chip:hover{
+    border-color:var(--green);
+    color:var(--green-dark);
+    transform:translateY(-1px);
+  }
+
+  /* ===== Services section ===== */
+  .services{
+    padding:84px 56px 100px;
+    max-width:1280px;
+    margin:0 auto;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:48px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:34px;
+    color:var(--navy);
+  }
+  .section-head p{
+    color:var(--muted);
+    max-width:420px;
+    font-size:14.5px;
+    line-height:1.6;
+  }
+
+  .group{
+    margin-bottom:56px;
+  }
+  .group-label{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .group-label .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    background:var(--navy);
+    color:var(--white);
+    padding:4px 10px;
+    border-radius:5px;
+    text-transform:uppercase;
+  }
+  .group-label h3{
+    font-size:19px;
+    color:var(--navy);
+  }
+  .group-label .rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width:1000px){
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:680px){
+    .card-grid{grid-template-columns:1fr;}
+  }
+
+  .card{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px 22px 22px;
+    overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; right:0;
+    width:64px; height:64px;
+    background:repeating-linear-gradient(45deg, var(--amber) 0 8px, var(--navy) 8px 16px);
+    clip-path:polygon(100% 0, 0 0, 100% 100%);
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:var(--green);
+    box-shadow:0 18px 32px -20px rgba(27,36,64,0.35);
+  }
+  .card:hover::before{
+    opacity:1;
+  }
+  .card .code{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--green-dark);
+    letter-spacing:.06em;
+    margin-bottom:10px;
+    display:block;
+  }
+  .card h4{
+    font-size:16.5px;
+    color:var(--navy);
+    line-height:1.35;
+    margin-bottom:10px;
+  }
+  .card p{
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--muted);
+    margin:0;
+  }
+
+  /* ===== CTA strip ===== */
+  .cta-strip{
+    background:var(--navy);
+    border-radius:20px;
+    margin:0 56px 90px;
+    padding:46px 50px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-strip::after{
+    content:"";
+    position:absolute;
+    right:-40px; bottom:-60px;
+    width:220px;height:220px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(111,192,66,0.25), transparent 70%);
+  }
+  .cta-strip h3{
+    color:var(--white);
+    font-size:24px;
+    max-width:460px;
+    position:relative;
+    z-index:1;
+  }
+  .cta-strip a.btn{
+    background:var(--green);
+    color:var(--white);
+    font-weight:600;
+    font-size:14px;
+    padding:14px 26px;
+    border-radius:30px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    position:relative;
+    z-index:1;
+    transition:background .15s ease;
+  }
+  .cta-strip a.btn:hover{background:var(--green-dark);}
+
+  /* ===== Footer ===== */
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 56px;
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:13px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  @media (max-width:760px){
+    .topbar{padding:16px 22px;}
+    nav.main-nav{display:none;}
+    .hero{padding:48px 22px 60px;}
+    .hero h1{font-size:32px;}
+    .cat-nav{padding:0 22px;margin-top:-20px;}
+    .services{padding:60px 22px 70px;}
+    .cta-strip{margin:0 22px 60px;padding:36px 26px;}
+    footer{padding:22px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <div class="brand-text">
+      <strong>SAFETY WATCH</strong>
+      <span>Innovations Ltd · Know Safety, No Pain</span>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
+    <a href="#">About Us</a>
+    <a href="#" style="color:var(--green-dark);">Services</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+    <a href="#">More ▾</a>
+  </nav>
+  <div class="nav-actions">
+    <div class="search-pill">
+      <input type="text" placeholder="Search for a course…">
+      <button aria-label="Search">⌕</button>
+    </div>
+    <div class="icon-circle">🛒</div>
+    <div class="icon-circle">☻</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-eyebrow">14 Services · One Safety Standard</div>
+  <h1>Services built to keep people, sites, and events safe.</h1>
+  <p class="lede">From OSH compliance audits to crowd protection at major events — Safety Watch Innovations delivers practical, standards-aligned safety systems across Kenya's workplaces, industries, and public spaces.</p>
+  <div class="breadcrumb">
+    <a href="#">Home</a>
+    <span class="dot"></span>
+    <span>Services</span>
+  </div>
+</section>
+
+<nav class="cat-nav">
+  <span class="cat-chip">Workplace &amp; Compliance</span>
+  <span class="cat-chip">Events &amp; Public Safety</span>
+  <span class="cat-chip">High-Risk Industries</span>
+  <span class="cat-chip">Technology &amp; Equipment</span>
+</nav>
+
+<main class="services">
+
+  <div class="section-head">
+    <h2>Our Services</h2>
+    <p>Fourteen specialised offerings, grouped by where the risk actually lives — from the factory floor to the festival ground.</p>
+  </div>
+
+  <!-- GROUP 1 -->
+  <div class="group">
+    <div class="group-label">
+      <span class="tag">Group A</span>
+      <h3>Workplace &amp; Compliance</h3>
+      <span class="rule"></span>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="code">SVC-01</span>
+        <h4>OSH Compliance &amp; Management Systems</h4>
+        <p>Helps organisations develop and maintain Occupational Safety &amp; Health systems that meet legal and industry standards. Ensures workplaces operate safely and remain compliant with regulations.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-04</span>
+        <h4>OSH Training &amp; Capacity Building</h4>
+        <p>Provides safety training programs to equip employees with skills on hazard awareness, emergency procedures, and safe work practices.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-14</span>
+        <h4>Corporate &amp; SME Safety Programmes</h4>
+        <p>Provides structured safety plans tailored to businesses. Helps build a strong safety culture and reduce workplace incidents.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-08</span>
+        <h4>Real Estate, Facility &amp; Property Safety</h4>
+        <p>Ensures buildings and facilities are safe for occupants. Covers inspections, hazard identification, safety signage, and compliance checks.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-11</span>
+        <h4>Environmental Health, ESG &amp; Sustainability</h4>
+        <p>Supports organisations in meeting environmental and sustainability standards. Includes waste management, pollution prevention, and ESG reporting.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-06</span>
+        <h4>Fire Safety &amp; Emergency Response</h4>
+        <p>Ensures organisations are prepared for fire incidents and emergencies. Includes fire risk assessments, drills, response planning, and evacuation training.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP 2 -->
+  <div class="group">
+    <div class="group-label">
+      <span class="tag">Group B</span>
+      <h3>Events &amp; Public Safety</h3>
+      <span class="rule"></span>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="code">SVC-02</span>
+        <h4>Event Safety Management &amp; Crowd Protection</h4>
+        <p>Covers planning and coordinating safety measures during events. Ensures safe crowd movement, emergency readiness, and overall incident prevention.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-03</span>
+        <h4>Event Data Capture &amp; Analytics</h4>
+        <p>Involves collecting real-time safety and operational data during events. Helps organisers track attendance, risks, and performance for better decision-making.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-10</span>
+        <h4>Film, TV &amp; Media Production Safety</h4>
+        <p>Provides safety oversight for film and media sets. Ensures cast and crew work in secure environments, especially during stunts or high-risk scenes.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-05</span>
+        <h4>Fleet Safety &amp; Road Risk Management</h4>
+        <p>Focuses on minimising accidents and risks related to company vehicles. Includes driver assessments, route safety planning, and vehicle monitoring.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP 3 -->
+  <div class="group">
+    <div class="group-label">
+      <span class="tag">Group C</span>
+      <h3>High-Risk Industries</h3>
+      <span class="rule"></span>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="code">SVC-07</span>
+        <h4>Construction &amp; High-Risk Industry Safety</h4>
+        <p>Offers specialised safety supervision, audits, and support for construction and other high-risk industries. Helps prevent accidents and ensures site compliance.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-09</span>
+        <h4>Agriculture, Coffee, Tea Factory &amp; Dairy Safety</h4>
+        <p>Enhances safety within agricultural processing environments. Addresses machinery risks, chemical exposure, safe handling, and worker protection.</p>
+      </div>
+      <div class="card">
+        <span class="code">SVC-13</span>
+        <h4>PPE &amp; Safety Equipment Supply</h4>
+        <p>Supplies certified protective gear and safety equipment to ensure worker safety across various industries.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP 4 -->
+  <div class="group">
+    <div class="group-label">
+      <span class="tag">Group D</span>
+      <h3>Technology &amp; Equipment</h3>
+      <span class="rule"></span>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="code">SVC-12</span>
+        <h4>Digital HSE Solutions &amp; Automation</h4>
+        <p>Delivers tech-based safety solutions such as digital reporting, automated safety alerts, and AI-driven monitoring.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="cta-strip">
+  <h3>Need a safety plan for your site, factory, or next event?</h3>
+  <a class="btn" href="#">Talk to our safety team →</a>
+</div>
+
+<footer>
+  <span>© 2026 Safety Watch Innovations Ltd. All rights reserved.</span>
+  <span>Nairobi, Kenya</span>
+</footer>
+
+</body>
+</html>
