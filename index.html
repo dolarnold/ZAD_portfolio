@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zedekiah Arnold Dol — Full Stack Software Engineer</title>
+<meta name="description" content="Full Stack Software Engineer with 5+ years building GDPR-compliant, multilingual, offline-first platforms for ICT4D, conservation, and agricultural development organizations across Africa and Europe.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zedekiah Arnold Dol — Full Stack Software Engineer">
+<meta property="og:description" content="Building software that still works when the signal drops. ICT4D, offline-sync, and GDPR-compliant systems for Africa and Europe.">
+<meta property="og:url" content="https://zedekiahdol.dev/">
+<meta property="og:image" content="https://zedekiahdol.dev/og-image.png">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zedekiah Arnold Dol — Full Stack Software Engineer">
+<meta name="twitter:description" content="Building software that still works when the signal drops. ICT4D, offline-sync, and GDPR-compliant systems for Africa and Europe.">
+<meta name="twitter:image" content="https://zedekiahdol.dev/og-image.png">
+
+<!-- Favicon (inline SVG, matches the signal-bars motif) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2321262E'/%3E%3Crect x='6' y='18' width='3' height='8' rx='1' fill='%235B6B82'/%3E%3Crect x='12' y='14' width='3' height='12' rx='1' fill='%235B6B82'/%3E%3Crect x='18' y='9' width='3' height='17' rx='1' fill='%23C9622B'/%3E%3Crect x='24' y='5' width='3' height='21' rx='1' fill='%23C9622B'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -809,9 +828,22 @@
         <span class="section-tag">02 / Track record</span>
         <h2>Professional experience</h2>
       </div>
-      <p class="section-note">Four roles, three organizations, one thread — systems that hold up in the field.</p>
+      <p class="section-note">Five roles, four organizations, one thread — systems that hold up in the field.</p>
     </div>
     <div class="timeline reveal">
+
+      <div class="job">
+        <div class="job-period">2025 — Present</div>
+        <div>
+          <div class="job-role">Freelance Full Stack Software Engineer</div>
+          <span class="job-org">Independent · Nairobi, Kenya (Remote)</span>
+          <ul>
+            <li>Building Tenantree, a B2B property management SaaS for Kenyan real estate agencies, covering KRA WHT automation, M-Pesa reconciliation, and a Laravel + Blade analytics dashboard.</li>
+            <li>Developing Sales Pro, a point-of-sale (POS) system, handling transaction processing, inventory, and reporting workflows for retail businesses.</li>
+            <li>Managing end-to-end client engagements independently — requirements gathering, architecture, delivery, and ongoing support.</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="job">
         <div class="job-period">Jul 2022 — Feb 2025</div>
@@ -1008,6 +1040,26 @@
         </div>
       </div>
 
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <span class="card-org">Independent / Freelance</span>
+            <h3>Sales Pro — Point of Sale System</h3>
+          </div>
+          <span class="badge current">● Current</span>
+        </div>
+        <p>Point-of-sale system built for retail businesses, covering transaction processing, inventory tracking, and sales reporting workflows.</p>
+        <div class="card-tags">
+          <span class="tag">POS</span>
+          <span class="tag">Inventory</span>
+          <span class="tag">Retail</span>
+        </div>
+        <div class="card-link-row">
+          <a class="card-link" href="#" target="_blank" rel="noopener">↗ Live demo</a>
+          <a class="card-link" href="#" target="_blank" rel="noopener">↗ Repo</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1169,7 +1221,13 @@
   }
   themeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
-    setTheme(current === 'dark' ? '' : 'dark');
+    if(current === 'dark'){
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('theme');
+      themeToggle.textContent = '🌓';
+    } else {
+      setTheme('dark');
+    }
   });
 
   // ===== Reveal animations =====
